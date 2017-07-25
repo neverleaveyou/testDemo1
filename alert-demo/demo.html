@@ -1,0 +1,405 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			font-family: "微软雅黑";
+		}
+		input {
+			outline-style: none;
+		}
+		span {
+			display: inline-block;
+		}
+		.box {
+			width: 60px;
+			height: 30px;
+			line-height: 30px;
+			margin: 50px 50px;
+			float: left;
+		}
+		.box > .search {
+			display: block;
+			border: 1px solid #666;
+			width: 60px;
+			height: 30px;
+			font-size: 14px;
+			padding:0;
+			margin: 0;
+			box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			-ms-box-sizing: border-box;
+			background-color: #ececec;
+
+
+		}
+		.none-box {
+			width: 500px;
+			height: 420px;
+			float: left;
+			border: 2px solid #d2cccc;
+			margin-top: 50px;
+			margin-left: -25px;
+			display: none;
+			/*display: block;*/
+			box-sizing: border-box;
+			position:relative;
+			z-index: 90;
+			background-color: #fff;
+		}
+		.addPepole {
+			height: 20px;
+			line-height: 20px;
+			width: 100%;
+			border-bottom: 1px solid #e4dfdf;
+			background-color: #fff;
+		}
+		.addPepole > span {
+			height: 20px;
+			line-height: 20px;
+		}
+		.ren {
+			font-size: 14px;
+			float: left;
+			margin-left: 10px;
+			color: #7a7575;
+		} 
+		.close {
+			font-size: 25px;
+			float: right;
+			margin-right: 10px;
+			cursor: pointer;
+			color: #7a7575;
+		}
+		.position-table {
+			width:429px;
+			height:50px;
+			background-color:#d6d8d8;
+			position:absolute;
+			top:66px;
+			left:25px;
+			z-index:99;
+			border-collapse:collapse;
+			border:1px solid #b1b5b4;
+			box-sizing: border-box;
+		}
+		.mainPart {
+			width: 100%;
+			height: 340px;
+			overflow: hidden;
+		}
+		.search-part {
+			height: 46px;
+			line-height: 46px;
+			padding-left: 40px;
+			background-color: #fff;
+			box-sizing: border-box;
+		}
+		.username {
+			font-size: 12px;
+		}
+		.search-button {
+			height: 24px;
+			border-radius: 3px;
+			box-sizing: border-box;
+			border:1px solid #d2cccc;
+		}
+		.submit {
+			height: 24px;
+			width: 44px;
+			font-size: 12px;
+			background-color: #c33232;
+			color: #edeaea;
+			border:1px solid #d2cccc;
+			box-sizing: border-box;
+			border-radius: 3px;
+		}
+		.last-box {
+			width: 100%;
+			height: 45px;
+			line-height: 45px;
+			background-color: #fff;
+			border-top: 1px solid #e4dfdf;
+			box-sizing: border-box;
+			margin-top: 10px;
+		}
+		.sure {
+			background-color: #136fa9;
+			width: 50px;
+			height: 28px;
+			line-height: 28px;
+			color: #fff;
+			float: right;
+			border: none;
+			margin-top: 10px;
+			margin-right: 15px;
+			border-radius: 3px;
+		}
+		tr {
+			height: 50px;
+			margin: 0;
+			padding: 0;
+		}
+		td {
+			margin: 0;
+			padding: 0;
+			width:25%;
+			height: 50px;
+			font-size: 14px;
+			text-align: center;
+			border-collapse:collapse;
+			border:1px solid #b1b5b4;
+			box-sizing: border-box;
+		}
+		th {
+			border:1px solid #b1b5b4;
+			box-sizing: border-box;
+		}
+		.mainPart {
+			box-sizing: border-box;
+			padding: 0 25px;
+		}
+		.check-box {
+			position: absolute;
+			top: 20px;
+			left: 5px;
+		}
+		.table-box {
+			width:100%;
+			height:300px;
+			overflow-y:auto;
+			position:relative;
+			box-sizing: border-box;
+			margin-top:0px;
+		}
+		.zhezhu {
+			position: absolute;
+			top:0;
+			left:0;
+			background-color:black;
+			width: 100%;
+			height:100%;
+			z-index: 30;
+			display: none;
+			opacity: 0.3;
+		}
+	</style>
+</head>
+<body>
+<!--<input class="hee" type="submit" value="hehe" style="position: absolute;top:100px;left:900px;"/>-->
+	<div class="box">
+		<!--<button class="search">添加人员</button>-->
+		<input class="search" value="添加人员" type="submit"/>
+	</div>
+	<div class="none-box">
+		<!-- 添加人员分配 -->
+		<div class="addPepole">
+			<span class="ren">添加人员分配</span>
+			<span class="close">×</span>
+		</div>
+		<!--定位的表格头部-->
+		<table class="position-table">
+				<thead>
+					<tr>
+						<th width="25%" style="position:relative"><input class="check-box" type="checkbox">全选/反选</td>	
+						<th width="25%">代理人姓名</td>
+						<th width="25%">手机号</td>
+						<th width="25%">类型</td>
+					</tr>
+				</thead>
+		</table>
+		<!-- 人员搜索 -->
+		<div class="mainPart">
+			<div class="search-part">
+				<span class="username">代理人姓名：</span>
+				<input class="search-button" type="text" placeholder="请输入代理人姓名">
+				<input class="submit" type="submit" value="搜索">
+			</div>
+			<!-- 选择人员 -->
+			<div class="table-box">
+				<table style="width:100%;overflow:hidden;border-collapse:collapse;border:1px solid #b1b5b4;">
+					<thead>
+						<tr>
+							<th>全选/反选</td>
+							<th>代理人姓名</td>
+							<th>手机号</td>
+							<th>类型</td>
+						</tr>
+					</thead>
+
+				 <tbody id="tbody" style="width:100%;height:250px;overflow:auto;">
+				 	<tr>
+				 	<td><input class="common" type="checkbox"></td>
+				 	<td>张三</td>
+				 	<td>13520467890</td>
+				 	<td>普通员工</td>
+				 </tr>
+				 <tr>
+				 	<td><input class="common" type="checkbox"></td>
+				 	<td>李四</td>
+				 	<td>13678909823</td>
+				 	<td>普通员工</td>
+				 </tr>
+				 <tr id="chenxiao">
+				 	<td><input class="common" type="checkbox"></td>
+				 	<td>陈晓</td>
+				 	<td>13520467890</td>
+				 	<td>普通员工</td>
+				 </tr>
+				 <tr>
+				 	<td><input class="common" type="checkbox"></td>
+				 	<td>王五</td>
+				 	<td>13678909823</td>
+				 	<td>普通员工</td>
+				 </tr>
+				 <tr>
+				 	<td><input class="common" type="checkbox"></td>
+				 	<td>赵钱</td>
+				 	<td>13520467890</td>
+				 	<td>普通员工</td>
+				 </tr>
+				 <tr>
+				 	<td><input class="common" type="checkbox"></td>
+				 	<td>孙丽</td>
+				 	<td>13678909823</td>
+				 	<td>普通员工</td>
+				 </tr>
+				 <tr>
+				 	<td><input class="common" type="checkbox"></td>
+				 	<td>王明</td>
+				 	<td>13520467890</td>
+				 	<td>普通员工</td>
+				 </tr>
+				 <tr>
+				 	<td><input class="common" type="checkbox"></td>
+				 	<td>李辉</td>
+				 	<td>13678909823</td>
+				 	<td>普通员工</td>
+				 </tr>
+				 <tr>
+				 	<td><input class="common" type="checkbox"></td>
+				 	<td>韩寒</td>
+				 	<td>13520467890</td>
+				 	<td>普通员工</td>
+				 </tr>
+				 <tr>
+				 	<td><input class="common" type="checkbox"></td>
+				 	<td>李丽</td>
+				 	<td>13678909823</td>
+				 	<td>普通员工</td>
+				 </tr>
+				 <tr>
+				 	<td><input class="common" type="checkbox"></td>
+				 	<td>潇潇</td>
+				 	<td>13520467890</td>
+				 	<td>普通员工</td>
+				 </tr>
+				 <tr>
+				 	<td><input class="common" type="checkbox"></td>
+				 	<td>宏宏</td>
+				 	<td>13678909823</td>
+				 	<td>普通员工</td>
+				 </tr>
+				 <tr>
+				 	<td><input class="common" type="checkbox"></td>
+				 	<td>晴明</td>
+				 	<td>13520467890</td>
+				 	<td>普通员工</td>
+				 </tr>
+					<tr>
+						<td><input class="common" type="checkbox"></td>
+						<td>呵呵</td>
+						<td>13520467890</td>
+						<td>普通员工</td>
+					</tr>
+					<tr>
+						<td><input class="common" type="checkbox"></td>
+						<td>呵呵</td>
+						<td>13520467890</td>
+						<td>普通员工</td>
+					</tr>
+					<tr>
+						<td><input class="common" type="checkbox"></td>
+						<td>呵呵</td>
+						<td>13520467890</td>
+						<td>普通员工</td>
+					</tr>
+					<tr>
+						<td><input class="common" type="checkbox"></td>
+						<td>呵呵</td>
+						<td>13520467890</td>
+						<td>普通员工</td>
+					</tr>
+				 </tbody>
+				
+			</table>
+			</div>
+			
+		</div>
+		
+		<!-- 确定按钮 -->
+		<div class="last-box">
+			<input class="sure" type="submit" value="确定">
+		</div>
+		
+	</div>
+	<div class="zhezhu"></div>
+	<script src="jquery.js"></script>
+	<script>
+		//点击弹出框事件
+		$(".search").on("click",function(){
+			$(".none-box").css({"display":"block"});
+			$(".zhezhu").css({"display":"block"});
+		});
+		//点击隐藏弹出框
+		$(".close").on("click",function(){
+			$(".none-box").css({"display":"none"});
+			$(".zhezhu").css({"display":"none"});
+		});
+		//数据奇数偶数行背景颜色
+		$("#tbody tr:odd").css({"background-color":"#e7e8e8"});
+		$("#tbody tr:even").css({"background-color":"#f2f5f5"});
+		//单选反选
+		$(".check-box").on("click",function(){
+			if($(this).prop("checked")){
+				$(".common").prop({
+					"checked":"checked"
+				})
+			}else{
+				$(".common").removeAttr("checked");
+			}
+		})
+		$(".common").on("click",function(){
+			$(".common").each(function(){
+				if(!$(this).prop("checked")){
+					$(".check-box").removeAttr("checked");
+					return false;
+				}
+				else{
+					$(".check-box").prop({
+						"checked":"checked"
+					})
+				}
+			})
+		})
+		//搜索内容时滚动条滚动到对应内容
+		$(".submit").on("click",function() {
+			var obj=$(".table-box");
+			$("#tbody").children("tr").each(function (index,element) {
+				var current=index;
+				$("#tbody").children("tr").eq(index).children("td").each(function(index,element){
+					if($(".search-button").val()==$(this).html()){
+//						obj.scrollTop((current)*50);
+						obj.animate({scrollTop:(current*50)},200);
+					}
+				});
+			});
+		});
+	</script>
+</body>
+</html>
